@@ -33,6 +33,23 @@ export const LEGAL_CONTENT = {
       },
     ],
   },
+  contact: {
+    title: 'Contact Us',
+    sections: [
+      {
+        heading: 'Email',
+        body: 'support@jobportal.com',
+      },
+      {
+        heading: 'Phone',
+        body: '+1 (555) 123-4567',
+      },
+      {
+        heading: 'Contact form',
+        body: 'Prefer to write to us directly? Visit the Contact page from the navigation bar and we will get back to you within 24-48 hours.',
+      },
+    ],
+  },
   terms: {
     title: 'Terms of Service',
     sections: [
