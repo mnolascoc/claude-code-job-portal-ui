@@ -1,6 +1,12 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { InfoModal } from "./InfoModal";
+import { LEGAL_CONTENT } from "../data/legalContent";
 
 const Footer = () => {
+  const [activePolicy, setActivePolicy] = useState(null);
+  const policy = activePolicy ? LEGAL_CONTENT[activePolicy] : null;
+
   return (
     <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       {/* Background Elements */}
@@ -141,18 +147,30 @@ const Footer = () => {
 
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm text-gray-400 mb-6 md:mb-0">
-              <a className="group relative hover:text-white transition-colors duration-300">
+              <button
+                type="button"
+                onClick={() => setActivePolicy("privacy")}
+                className="group relative hover:text-white transition-colors duration-300"
+              >
                 <span className="relative z-10">Privacy Policy</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
-              <a className="group relative hover:text-white transition-colors duration-300">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActivePolicy("terms")}
+                className="group relative hover:text-white transition-colors duration-300"
+              >
                 <span className="relative z-10">Terms of Service</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
-              <a className="group relative hover:text-white transition-colors duration-300">
+              </button>
+              <button
+                type="button"
+                onClick={() => setActivePolicy("cookies")}
+                className="group relative hover:text-white transition-colors duration-300"
+              >
                 <span className="relative z-10">Cookie Policy</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-2"></div>
-              </a>
+              </button>
               <Link
                 to="/contact"
                 className="group relative hover:text-white transition-colors duration-300"
@@ -172,6 +190,12 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <InfoModal
+        isOpen={!!policy}
+        onClose={() => setActivePolicy(null)}
+        title={policy?.title}
+        sections={policy?.sections}
+      />
     </footer>
   );
 };
